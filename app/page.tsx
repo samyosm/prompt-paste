@@ -1,5 +1,8 @@
 export default function Home() {
   return (
-    <div>Hello, world!</div>
+    <main>
+      <aside></aside>
+      <section></section>
+    </main>
   );
 }
