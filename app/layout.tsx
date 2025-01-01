@@ -26,8 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className} antialiased`}>
-        <Header>
+      <body
+        className={`${font.className} grid h-screen max-h-screen grid-rows-[auto_1fr_auto] overflow-hidden bg-bland-50 antialiased`}
+      >
+        <Header className="">
           <Button RightIcon={PlusIcon} variant="filled" label="New Prompt" />
         </Header>
         {children}
