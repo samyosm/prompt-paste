@@ -1,7 +1,7 @@
 import {MainContent} from './MainContent';
 import {PromptCatalog} from './PromptCatalog';
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex h-full overflow-hidden">
       <aside className="h-full">
