@@ -45,7 +45,7 @@ export function PromptCatalog({children}: IPromptCatalog) {
   }
 
   return (
-    <div className="mx-4 flex w-full max-w-xl flex-col gap-2 overflow-y-auto p-1 pb-2">
+    <div className="lg:mx-4 mx-4 flex lg:w-full lg:max-w-xl flex-col gap-2 overflow-y-auto p-1 lg:pb-2 h-full">
       <form className="flex gap-2 items-center w-full" action={handleAction}>
         <Input
           type="search"
