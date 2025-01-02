@@ -1,8 +1,6 @@
-import dayjs from 'dayjs';
 import {faker} from '@faker-js/faker';
 import cn from 'clsx';
-
-import {HiOutlineClock as TimeIcon} from 'react-icons/hi2';
+import {PromptAttributes} from '../prompt-attributes/PromptAttribute';
 
 export interface IPromptCard {
   title: string;
@@ -19,7 +17,6 @@ export function randomPromptCard(): IPromptCard {
 }
 
 export function PromptCard({title, date, author}: IPromptCard) {
-  const formattedDate = dayjs(date).fromNow(false);
   return (
     <div
       className={cn(
@@ -28,18 +25,7 @@ export function PromptCard({title, date, author}: IPromptCard) {
       )}
     >
       <p className="line-clamp-2 font-medium">{title}</p>
-      <div>
-        <p>{`@${author}`}</p>
-        <p className="flex items-center gap-1">
-          <TimeIcon />
-          <time
-            dateTime={date.toISOString()}
-            className="first-letter:uppercase"
-          >
-            {formattedDate}
-          </time>
-        </p>
-      </div>
+      <PromptAttributes date={date} author={author} />
     </div>
   );
 }

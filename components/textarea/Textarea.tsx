@@ -24,7 +24,7 @@ export function Textarea({
   return (
     <textarea
       className={cn(
-        'w-full resize-none h-fit p-5 rounded-xl ring-1 placeholder:ring-bland-500 ring-bland-200 outline-hidden text-bland-900',
+        'w-full resize-none h-fit p-5 rounded-xl ring-1 placeholder:text-bland-500 ring-bland-200 outline-hidden text-bland-900',
         'focus:ring-bland-500',
         className,
       )}
