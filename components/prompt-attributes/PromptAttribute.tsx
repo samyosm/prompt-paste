@@ -1,5 +1,6 @@
-import {formatFromNow} from '@/util/formatDate';
+import dayjs from 'dayjs';
 import {HiOutlineClock as TimeIcon} from 'react-icons/hi2';
+import '@/setup/dayjs';
 
 export interface IPromptAttributes
   extends React.ComponentPropsWithoutRef<'div'> {
@@ -8,7 +9,7 @@ export interface IPromptAttributes
 }
 
 export function PromptAttributes({date, author, ...rest}: IPromptAttributes) {
-  const formattedDate = formatFromNow(date);
+  const formattedDate = dayjs(date).fromNow();
   return (
     <div {...rest}>
       <p>{`@${author}`}</p>

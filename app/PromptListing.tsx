@@ -4,17 +4,21 @@ import {Query} from 'appwrite';
 
 async function fetchPrompts({
   limit,
-  lastId,
+  offset,
   search = '',
 }: {
   limit: number;
-  lastId?: string;
+  offset?: number;
   search?: string;
 }) {
-  const query = [Query.limit(limit), Query.contains('title', search)];
+  const query = [
+    Query.limit(limit),
+    Query.contains('title', search),
+    Query.orderDesc('created_at'),
+  ];
 
-  if (lastId) {
-    query.push(Query.cursorAfter(lastId));
+  if (offset) {
+    query.push(Query.offset(offset));
   }
 
   const {documents} = await databases.listDocuments(
@@ -32,13 +36,15 @@ async function fetchPrompts({
 export interface IPromptListing {
   searchParams?: {
     query: string;
+    p: string;
   };
 }
 
 export async function PromptListing({searchParams}: IPromptListing) {
   const {prompts} = await fetchPrompts({
-    limit: 25,
+    limit: 20,
     search: searchParams?.query,
+    offset: Number(searchParams?.p) * 20,
   });
 
   console.log(searchParams);

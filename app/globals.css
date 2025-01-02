@@ -25,7 +25,7 @@
   --color-bland-900: #18181b;
   --color-bland-950: #09090b;
 }
-
+@variant hover (&:hover);
 body {
   font-family: 'Space Grotesk', cursive;
 }

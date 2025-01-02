@@ -1,19 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from "@storybook/test"
+import type {Meta, StoryObj} from '@storybook/react';
+import {fn} from '@storybook/test';
 
 import {
   TbCaretRightFilled as RightIcon,
-  TbCaretLeftFilled as LeftIcon
+  TbCaretLeftFilled as LeftIcon,
 } from 'react-icons/tb';
 
-import { Button } from './Button';
+import {Button} from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
   args: {
     onClick: fn(),
-    RightIcon: () => <RightIcon className="transition-transform duration-200 group-hover:translate-x-1" />,
-    LeftIcon: () => <LeftIcon className="transition-transform duration-200 group-hover:-translate-x-1" />,
+    RightIcon: () => (
+      <RightIcon className="transition-transform duration-200 group-hover:translate-x-1" />
+    ),
+    LeftIcon: () => (
+      <LeftIcon className="transition-transform duration-200 group-hover:-translate-x-1" />
+    ),
   },
 };
 
@@ -48,6 +52,10 @@ export const Text: Story = {
   },
 };
 
-
-
-
+export const Disabled: Story = {
+  args: {
+    variant: 'filled',
+    label: 'Button',
+    disabled: true,
+  },
+};

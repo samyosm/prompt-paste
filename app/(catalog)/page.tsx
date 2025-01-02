@@ -30,6 +30,7 @@ async function handleForm(formData: FormData) {
 export interface PageWithSearchParams {
   searchParams?: Promise<{
     query: string;
+    p: string;
   }>;
 }
 

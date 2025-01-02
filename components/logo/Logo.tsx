@@ -1,3 +1,9 @@
+import Link from 'next/link';
+
 export function Logo() {
-  return <p className="font-medium">Prompt Paste</p>;
+  return (
+    <Link href="/" className="font-medium">
+      Prompt Paste
+    </Link>
+  );
 }

@@ -21,6 +21,7 @@ export function Button({
     <button
       className={cn(
         'px-3 py-2 rounded-lg hover:underline flex items-center gap-1 group cursor-pointer',
+        'disabled:bg-bland-200 disabled:text-bland-400 disabled:cursor-not-allowed',
         variant === 'filled' &&
           'text-white bg-primary-400 hover:bg-primary-500',
         variant === 'tonal' &&

@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${font.className} flex flex-col h-screen max-h-screen overflow-hidden bg-bland-50 antialiased`}
+        className={`${font.className} grid h-screen max-h-screen grid-rows-[auto_auto_1fr] overflow-hidden bg-bland-50 antialiased`}
       >
         <Toaster position="top-right" richColors />
         <Header className="h-fit">
@@ -44,7 +44,7 @@ export default function RootLayout({
             <PlusIcon />
           </Link>
         </Header>
-        <div className="h-full">{children}</div>
+        <div className="min-h-max">{children}</div>
       </body>
     </html>
   );
