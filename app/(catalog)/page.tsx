@@ -4,6 +4,7 @@ import {databases, ID} from '@/util/appwrite';
 import cn from 'clsx';
 import {redirect} from 'next/navigation';
 import {useId} from 'react';
+import Common from './Common';
 
 async function handleForm(formData: FormData) {
   'use server';
@@ -27,12 +28,19 @@ async function handleForm(formData: FormData) {
   redirect(`/${document.$id}`);
 }
 
+export interface PageWithSearchParams {
+  searchParams?: Promise<{
+    query: string;
+  }>;
+}
+
 // TODO: Add ReCaptcha
-export default async function Home() {
+export default async function Home({searchParams}: PageWithSearchParams) {
   const formId = useId();
+  const search = await searchParams;
 
   return (
-    <>
+    <Common searchParams={search}>
       <div className="space-y-2">
         <input
           form={formId}
@@ -53,6 +61,6 @@ export default async function Home() {
           className="w-full justify-center"
         />
       </form>
-    </>
+    </Common>
   );
 }

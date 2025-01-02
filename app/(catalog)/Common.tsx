@@ -3,16 +3,17 @@ import {PromptListing} from '../PromptListing';
 
 export interface ILayout {
   children: React.ReactNode;
-  searchParams?: Promise<string>;
+  searchParams?: {
+    query: string;
+  };
 }
 
-export default async function Layout({children, searchParams}: ILayout) {
-  const search = await searchParams;
+export default async function Common({children, searchParams}: ILayout) {
   return (
     <div className="flex h-full overflow-hidden">
       <aside className="h-full">
         <PromptCatalog>
-          <PromptListing searchParams={search} />
+          <PromptListing searchParams={searchParams} />
         </PromptCatalog>
       </aside>
       <main className="flex-1">

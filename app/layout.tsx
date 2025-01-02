@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${font.className} grid h-screen max-h-screen grid-rows-[auto_1fr_auto] overflow-hidden bg-bland-50 antialiased`}
       >
         <Toaster position="top-right" richColors />
-        <Header className="">
+        <Header className="h-fit">
           <a
             href="/"
             className={cn(

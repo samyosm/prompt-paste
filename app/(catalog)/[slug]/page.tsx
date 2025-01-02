@@ -4,6 +4,8 @@ import cn from 'clsx';
 import { InteractiveCopybutton, InteractiveCopyLinkButton } from './InteractiveCopyButton';
 import { PromptAttributes } from '@/components/prompt-attributes/PromptAttribute';
 import { databases } from '@/util/appwrite';
+import { PageWithSearchParams } from '../page';
+import Common from '../Common';
 
 
 export interface IFeaturePrompt {
@@ -35,17 +37,18 @@ async function getPrompt(id: string) {
   } satisfies IFeaturePrompt;
 }
 
-export default async function Prompt({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+interface PageProps extends PageWithSearchParams {
+    params: Promise<{ slug: string }>
+}
 
-  console.log(slug);
+export default async function Prompt({ params, searchParams }: PageProps) {
+  const { slug } = await params;
+  const search = await searchParams;
 
   const prompt = await getPrompt(slug);
 
-  console.log(prompt);
-
   return (
-    <>
+    <Common searchParams={search}>
       <div className="space-y-2">
         <h1
           className={cn(
@@ -69,6 +72,6 @@ export default async function Prompt({ params }: { params: Promise<{ slug: strin
         </p>
         <InteractiveCopybutton prompt={prompt} />
       </article>
-    </>
+    </Common>
   );
 }

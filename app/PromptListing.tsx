@@ -2,8 +2,16 @@ import {PromptCard} from '@/components/prompt-card/PromptCard';
 import {databases} from '@/util/appwrite';
 import {Query} from 'appwrite';
 
-async function fetchPrompts({limit, lastId}: {limit: number; lastId?: string}) {
-  const query = [Query.limit(limit)];
+async function fetchPrompts({
+  limit,
+  lastId,
+  search = '',
+}: {
+  limit: number;
+  lastId?: string;
+  search?: string;
+}) {
+  const query = [Query.limit(limit), Query.contains('title', search)];
 
   if (lastId) {
     query.push(Query.cursorAfter(lastId));
@@ -22,14 +30,18 @@ async function fetchPrompts({limit, lastId}: {limit: number; lastId?: string}) {
 }
 
 export interface IPromptListing {
-  searchParams?: string;
+  searchParams?: {
+    query: string;
+  };
 }
 
 export async function PromptListing({searchParams}: IPromptListing) {
-  const {prompts} = await fetchPrompts({limit: 25});
-  const search = new URLSearchParams(searchParams);
+  const {prompts} = await fetchPrompts({
+    limit: 25,
+    search: searchParams?.query,
+  });
 
-  console.log(search.get('query'));
+  console.log(searchParams);
 
   return (
     <>

@@ -2,7 +2,7 @@ import cn from 'clsx';
 import {IconType} from 'react-icons';
 
 export interface IButton extends React.ComponentPropsWithoutRef<'button'> {
-  label: string;
+  label?: string;
   variant?: 'filled' | 'tonal' | 'outlined' | 'text';
   LeftIcon?: IconType;
   RightIcon?: IconType;
@@ -33,7 +33,7 @@ export function Button({
       {...others}
     >
       {LeftIcon && <LeftIcon />}
-      <p>{label}</p>
+      {label && <p>{label}</p>}
       {RightIcon && <RightIcon />}
     </button>
   );

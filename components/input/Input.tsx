@@ -20,7 +20,7 @@ export function Input({
 }: IInput) {
   const id = useId();
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 w-full">
       {label && <label htmlFor={id}>{label}</label>}
 
       {message}
