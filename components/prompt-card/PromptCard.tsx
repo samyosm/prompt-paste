@@ -24,7 +24,7 @@ export function PromptCard({title, date, author}: IPromptCard) {
     <div
       className={cn(
         'flex flex-col justify-between gap-2 rounded-xl bg-white p-4 ring-1 ring-inset ring-bland-200',
-        'hover:ring-bland-400 hover:shadow-sm hover:bg-bland-50 cursor-pointer', // TODO: Make into a real link
+        'hover:ring-bland-400 hover:shadow-xs hover:bg-bland-50 cursor-pointer', // TODO: Make into a real link
       )}
     >
       <p className="line-clamp-2 font-medium">{title}</p>

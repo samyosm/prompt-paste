@@ -16,14 +16,18 @@ export async function MainContent() {
         <div className="space-y-2">
           <input
             className={cn(
-              'w-full border-b border-b-bland-200 text-2xl font-medium outline-none',
+              'w-full border-b border-b-bland-200 text-2xl font-medium outline-hidden',
             )}
             placeholder="Untitled"
           />
           <p className="">By @Samy - Now</p>
         </div>
         <form className="space-y-2" action={handleForm}>
-          <Textarea name="prompt" placeholder="Write prompt here..." />
+          <Textarea
+            autoResize
+            name="prompt"
+            placeholder="Write prompt here..."
+          />
           <Button
             type="submit"
             label="Save"

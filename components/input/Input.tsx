@@ -26,8 +26,8 @@ export function Input({
       {message}
       <div
         className={cn(
-          'flex items-center gap-2 rounded-xl bg-white ring-1 ring-bland-200 text-bland-500 [&>*]:py-3 px-3',
-          'has-[:focus]:ring-bland-500 has-[:focus]:text-bland-900',
+          'flex items-center gap-2 rounded-xl bg-white ring-1 ring-bland-200 text-bland-500 *:py-3 px-3',
+          'has-focus:ring-bland-500 has-focus:text-bland-900',
           'hover:ring-bland-300',
         )}
       >
@@ -39,7 +39,7 @@ export function Input({
 
         <input
           className={cn(
-            'placeholder:text-bland-500 text-bland-900 outline-none w-full h-full',
+            'placeholder:text-bland-500 text-bland-900 outline-hidden w-full h-full',
             className,
           )}
           id={id}
