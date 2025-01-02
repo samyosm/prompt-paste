@@ -5,10 +5,11 @@ import type {Metadata} from 'next';
 import {Space_Grotesk as Font} from 'next/font/google';
 import './globals.css';
 import {Header} from '@/components/header/Header';
-import {Button} from '@/components/button/Button';
 import {Toaster} from 'sonner';
+import cn from 'clsx';
 
 import {HiOutlinePlus as PlusIcon} from 'react-icons/hi2';
+import Link from 'next/link';
 
 const font = Font({
   subsets: ['latin'],
@@ -32,7 +33,16 @@ export default function RootLayout({
       >
         <Toaster position="top-right" richColors />
         <Header className="">
-          <Button RightIcon={PlusIcon} variant="filled" label="New Prompt" />
+          <Link
+            href="/"
+            className={cn(
+              'px-3 py-2 rounded-lg hover:underline flex items-center gap-1 group cursor-pointer',
+              'text-white bg-primary-400 hover:bg-primary-500',
+            )}
+          >
+            <p>New Prompt</p>
+            <PlusIcon />
+          </Link>
         </Header>
         {children}
       </body>

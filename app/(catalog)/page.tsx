@@ -1,34 +1,54 @@
-import {Button} from '@/components/button/Button';
+import {SubmitButton} from '@/components/button/SubmitButton';
 import {Textarea} from '@/components/textarea/Textarea';
+import {databases, ID} from '@/util/appwrite';
 import cn from 'clsx';
+import {redirect} from 'next/navigation';
+import {useId} from 'react';
 
-import {HiPaperAirplane as SaveIcon} from 'react-icons/hi2';
+async function handleForm(formData: FormData) {
+  'use server';
+  console.log(formData);
 
+  const title = formData.get('title')?.toString().trim();
+  const content = formData.get('prompt');
+  const created_at = new Date();
+
+  const document = await databases.createDocument(
+    process.env.APPWRITE_DATABASE_ID!,
+    process.env.APPWRITE_PROMPT_COLLECTION_ID!,
+    ID.unique(),
+    {
+      title,
+      content,
+      created_at,
+    },
+  );
+
+  redirect(`/${document.$id}`);
+}
+
+// TODO: Add ReCaptcha
 export default async function Home() {
-  async function handleForm(formData: FormData) {
-    'use server';
-    console.log(formData);
-  }
+  const formId = useId();
 
   return (
     <>
       <div className="space-y-2">
         <input
+          form={formId}
           className={cn(
             'w-full border-b border-b-bland-200 text-2xl font-medium outline-hidden',
           )}
           placeholder="Untitled"
+          name="title"
         />
         <p className="">By @Samy - Now</p>
       </div>
-      <form className="space-y-2" action={handleForm}>
+      <form id={formId} className="space-y-2" action={handleForm}>
         <Textarea autoResize name="prompt" placeholder="Write prompt here..." />
-        <Button
-          type="submit"
+        <SubmitButton
+          pendingLabel="Pending..."
           label="Save"
-          RightIcon={() => (
-            <SaveIcon className="transition-transform duration-200 group-hover:translate-x-1" />
-          )}
           variant="filled"
           className="w-full justify-center"
         />

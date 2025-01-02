@@ -8,6 +8,7 @@ export interface IButton extends React.ComponentPropsWithoutRef<'button'> {
   RightIcon?: IconType;
 }
 
+// TODO: Styled for when disabled
 export function Button({
   label,
   variant = 'tonal',

@@ -2,8 +2,8 @@ import { Button } from '@/components/button/Button';
 import { faker } from '@faker-js/faker';
 import cn from 'clsx';
 import { InteractiveCopybutton, InteractiveCopyLinkButton } from './InteractiveCopyButton';
-import { formatFromNow } from '@/util/formatDate';
 import { PromptAttributes } from '@/components/prompt-attributes/PromptAttribute';
+import { databases } from '@/util/appwrite';
 
 
 export interface IFeaturePrompt {
@@ -12,7 +12,6 @@ export interface IFeaturePrompt {
   author: string;
   prompt: string;
 }
-
 
 export async function randomFeaturePrompt() {
   return {
@@ -23,10 +22,27 @@ export async function randomFeaturePrompt() {
   } as IFeaturePrompt;
 }
 
+async function getPrompt(id: string) {
+  const { title, created_at, content: prompt } = await databases.getDocument(
+    process.env.APPWRITE_DATABASE_ID!,
+    process.env.APPWRITE_PROMPT_COLLECTION_ID!,
+    id,
+    [],
+  );
+
+  return {
+    title, date: new Date(created_at), prompt, author: 'Samy!!'
+  } satisfies IFeaturePrompt;
+}
+
 export default async function Prompt({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  const prompt = await randomFeaturePrompt();
+  console.log(slug);
+
+  const prompt = await getPrompt(slug);
+
+  console.log(prompt);
 
   return (
     <>
