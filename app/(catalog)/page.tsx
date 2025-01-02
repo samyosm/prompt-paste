@@ -3,7 +3,6 @@ import {Textarea} from '@/components/textarea/Textarea';
 import {databases, ID} from '@/util/appwrite';
 import cn from 'clsx';
 import {redirect} from 'next/navigation';
-import {useId} from 'react';
 import Common from './Common';
 
 async function handleForm(formData: FormData) {
@@ -36,7 +35,8 @@ export interface PageWithSearchParams {
 
 // TODO: Add ReCaptcha
 export default async function Home({searchParams}: PageWithSearchParams) {
-  const formId = useId();
+  // NOTE useId()?
+  const formId = 'my-form';
   const search = await searchParams;
 
   return (

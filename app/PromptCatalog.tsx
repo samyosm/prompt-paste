@@ -1,7 +1,7 @@
 'use client';
 import {Input} from '@/components/input/Input';
 import {usePathname, useSearchParams} from 'next/navigation';
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
 import {Button} from '@/components/button/Button';
 import {HiMagnifyingGlass as SearchIcon} from 'react-icons/hi2';
@@ -37,7 +37,12 @@ export function PromptCatalog({children}: IPromptCatalog) {
   return (
     <div className="mx-4 flex size-full max-w-xl flex-col gap-2 overflow-y-auto p-1 scrollbar-thin">
       <form className="flex gap-2 items-center w-full" action={handleAction}>
-        <Input type="search" className="" name="search" placeholder="Search" />
+        <Input
+          type="search"
+          defaultValue={searchParams.get('query') || ''}
+          name="search"
+          placeholder="Search"
+        />
         <Button
           type="submit"
           RightIcon={SearchIcon}

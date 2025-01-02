@@ -9,6 +9,7 @@ import {Toaster} from 'sonner';
 import cn from 'clsx';
 
 import {HiOutlinePlus as PlusIcon} from 'react-icons/hi2';
+import Link from 'next/link';
 
 const font = Font({
   subsets: ['latin'],
@@ -28,11 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${font.className} grid h-screen max-h-screen grid-rows-[auto_1fr_auto] overflow-hidden bg-bland-50 antialiased`}
+        className={`${font.className} flex flex-col h-screen max-h-screen overflow-hidden bg-bland-50 antialiased`}
       >
         <Toaster position="top-right" richColors />
         <Header className="h-fit">
-          <a
+          <Link
             href="/"
             className={cn(
               'px-3 py-2 rounded-lg hover:underline flex items-center gap-1 group cursor-pointer',
@@ -41,9 +42,9 @@ export default function RootLayout({
           >
             <p>New Prompt</p>
             <PlusIcon />
-          </a>
+          </Link>
         </Header>
-        {children}
+        <div className="h-full">{children}</div>
       </body>
     </html>
   );
