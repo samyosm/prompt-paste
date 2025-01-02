@@ -27,7 +27,7 @@ export function InteractiveCopybutton({ prompt }: { prompt: IFeaturePrompt }) {
 
 
 export function InteractiveCopyLinkButton() {
-  const url = window.location;
+  const url = typeof window !== "undefined" && window.location;
   function handleClick() {
     navigator.clipboard.writeText(url.toString());
     toast.success('Successfully copied!');
